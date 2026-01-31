@@ -7,92 +7,86 @@ const menuCategories = {
       {
         name: 'Салат с языком',
         description: 'Деликатесный салат с отварным говяжьим языком, свежими овощами и майонезом',
-        price: '190сом',
-        image: '/salat_yazyk.png'
+        price: '220сом',
+        image: '/salat-yazik.png'
       },
       {
         name: 'Рафаэлло',
         description: 'Нежный салат с курицей, грибами, яйцом и сыром',
-        price: '200сом',
-        image: '/salat_rafaello.png'
-      },
-      {
-        name: 'Салат рубин',
-        description: 'Изысканный салат со свеклой, грецкими орехами и черносливом',
         price: '240сом',
-        image: '/salat_rubin.png'
+        image: '/salat-rafaello.png'
       },
       {
         name: 'Салат от Шефа',
         description: 'Авторский салат с телятиной, овощами гриль и фирменной заправкой',
-        price: '240сом',
-        image: '/salat_otshefa.png'
+        price: '250сом',
+        image: '/salat-shef.png'
       },
       {
-        name: 'Салат из руколлы',
-        description: 'Свежая рукола с черри, пармезаном и бальзамическим соусом',
-        price: '385сом',
-        image: '/salat_rukolla.png'
+        name: 'Салат Чимган',
+        description: 'Айзберг, кур филе, язык, солённый огурец, сухари, соус чимган, сыр черчил. ',
+        price: '220сом',
+        image: '/salat-chimgan.png'
       },
       {
-        name: 'Салат шакарап',
-        description: 'Традиционный узбекский салат с помидорами, луком и зеленью',
-        price: '120сом',
-        image: '/salat_shakarap.png'
+        name: 'Салат Чабан',
+        description: 'Огурцы очищенные, помидор, перец болгарский, петрушка,лук красный, масло оливки, лимонный сок, лимон.',
+        price: '180сом',
+        image: '/salat-chaban.png'
       },
-      {
-        name: 'Сырная тарелка',
-        description: 'Ассорти благородных сыров с виноградом и орехами',
-        price: '550сом',
-        image: '/salat_tarelka.png'
-      },
-      {
+       {
         name: 'Салат цезарь',
         description: 'Классический салат с курицей гриль, пармезаном и соусом Цезарь',
         price: '250сом',
-        image: '/salat_cezar.png'
-      },
-      {
-        name: 'Салат лёгкий',
-        description: 'Свежие овощи с зеленью и лимонной заправкой',
-        price: '250сом',
-        image: '/salat_lyogkiy.png'
-      },
-      {
-        name: 'Салат из баклажана',
-        description: 'Запеченные баклажаны с томатами, чесноком и зеленью',
-        price: '250сом',
-        image: '/salat_baklajan.png'
-      },
-      {
-        name: 'Ассорти овощное',
-        description: 'Свежие сезонные овощи, нарезанные и красиво оформленные',
-        price: '230сом',
-        image: '/salat_ovosh.png'
-      },
-      {
-        name: 'Салат с лососем',
-        description: 'Слабосоленый лосось с авокадо, огурцом и кунжутом',
-        price: '220сом',
-        image: '/salat_losos.png'
+        image: '/salat-cezar.png'
       },
       {
         name: 'Салат греческий',
         description: 'Классический греческий салат с овощами, оливками и сыром фета',
         price: '220сом',
-        image: '/salat_grecheskiy.png'
+        image: '/salat-grek.png'
+      },
+      {
+        name: 'Соленья',
+        description: 'Соленый помидор, огурцы, капуста, перец, стручковая фасоль,помидоры маринованные',
+        price: '180сом',
+        image: '/salat-sol.png'
+      },
+       {
+        name: 'Салат из баклажана',
+        description: 'Баклажан, чеснок, помидор, соус терияки, шрирачи и рукола',
+        price: '250сом',
+        image: '/salat-baklajan.png'
+      },
+      {
+        name: 'Салат из руколлы',
+        description: 'Свежая рукола с черри, пармезаном и бальзамическим соусом',
+        price: '200сом',
+        image: '/salat-rukolla.png'
+      },
+      {
+        name: 'Ассорти овощное',
+        description: 'Свежие сезонные овощи, нарезанные и красиво оформленные',
+        price: '260сом',
+        image: '/salat-assorti.png'
+      },
+      {
+        name: 'Салат шакарап',
+        description: 'Традиционный узбекский салат с помидорами, луком и зеленью',
+        price: '120сом',
+        image: '/salat-shakarap.png'
       },
       {
         name: 'Салат свекольный',
         description: 'Салат со свеклой, грецкими орехами и чесночной заправкой',
-        price: '120сом',
-        image: '/salat_svekolniy.png'
+        price: '130сом',
+        image: '/salat-sveklo.png'
       },
       {
         name: 'Китайский острый',
         description: 'Острый салат с овощами по-китайски и кунжутом',
-        price: '200сом',
-        image: '/salat_china.png'
+        price: '250сом',
+        image: '/salat-china.png'
       }
     ]
   },
@@ -100,53 +94,41 @@ const menuCategories = {
     title: 'Первые блюда',
     items: [
       {
+        name: 'Бодоно шорпо',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '380сом',
+        image: '/bodono-shorpo.png'
+      },
+      {
         name: 'Чучбара по домашнему',
         description: 'Традиционный узбекский суп с пельменями и насыщенным бульоном',
-        price: '180сом',
+        price: '200сом',
         image: '/chuchbara.png'
       },
       {
         name: 'Харчо по грузински',
         description: 'Пряный грузинский суп с говядиной, рисом и грецкими орехами',
-        price: '180сом',
-        image: '/harcho.png'
+        price: '200сом',
+        image: '/xarcho.png'
       },
       {
         name: 'Шорпо из говядины',
         description: 'Наваристый суп с говядиной и свежими овощами',
-        price: '220сом',
-        image: '/shorpo.png'
+        price: '240сом',
+        image: '/shorpo-gov.png'
       },
-      {
-        name: 'Бодоно шорпо',
-        description: 'Киргизский суп из перепелок с овощами и специями',
-        price: '350сом',
-        image: '/bodono.png'
-      },
-      {
-        name: 'Мясо по казахски',
-        description: 'Традиционное казахское блюдо - бешбармак с мясом и лапшой в бульоне',
-        price: '250сом',
-        image: '/kazah.png'
-      },
-      {
+       {
         name: 'Борщ',
         description: 'Классический украинский борщ с говядиной и сметаной',
-        price: '180сом',
+        price: '200сом',
         image: '/borsh.png'
       },
       {
-        name: 'Мампар',
-        description: 'Узбекский суп с нежными кусочками теста, мясом и овощами',
-        price: '200сом',
-        image: '/mampar.png'
+        name: 'Рамён',
+        description: 'Куриное яйцо, чеснок, растительное масло, зеленый лук,куриное бедро, масло сливочное, лапша.',
+        price: '250сом',
+        image: '/ramyon.png'
       },
-      {
-        name: 'Домашние пельмени',
-        description: 'Пельмени ручной лепки с мясной начинкой в бульоне',
-        price: '200сом',
-        image: '/pelmen.png'
-      }
     ]
   },
   mainDishes: {
@@ -155,74 +137,74 @@ const menuCategories = {
       {
         name: 'Плов Ташкентский',
         description: 'Классический ташкентский плов с бараниной, морковью и специями',
-        price: '250сом',
-        image: '/plov.png'
+        price: '270сом',
+        image: '/plov-tashkent.png'
       },
       {
-        name: 'Плов чайханский',
+        name: 'Мозговой штурм',
         description: 'Плов по рецепту восточных чайхан с сочным мясом',
-        price: '290сом',
-        image: '/plov_chayhana.png'
-      },
-      {
-        name: 'Гуйру лагман (жидкий)',
-        description: 'Уйгурское блюдо - домашняя лапша с мясом и овощами в бульоне',
-        price: '260сом',
-        image: '/guyru_lagman.png'
+        price: '200сом',
+        image: '/mozgovoy-shturm.png'
       },
       {
         name: 'Босо лагман (жареный)',
         description: 'Жареная лапша с мясом и овощами по-уйгурски',
-        price: '280сом',
-        image: '/boso_lagman.png'
+        price: '290сом',
+        image: '/boso-lagman.png'
       },
       {
         name: 'Гуйру лагман',
-        description: 'Традиционный уйгурский лагман с тянутой лапшой',
-        price: '280сом',
-        image: '/guyru_lagman2.png'
-      },
-      {
-        name: 'Фрикассе из курицы',
-        description: 'Нежная курица в сливочном соусе с овощами',
-        price: '400сом',
-        image: '/frikasse.png'
-      },
-      {
-        name: 'Ачуу эт',
-        description: 'Традиционное киргизское блюдо - тушеное мясо с острым соусом',
-        price: '490сом',
-        image: '/achu_et.png'
+        description: 'Уйгурское блюдо - домашняя лапша с мясом и овощами в бульоне',
+        price: '290сом',
+        image: '/guyru-lagman.png'
       },
       {
         name: 'Султан',
         description: 'Фирменное блюдо ресторана - изысканное мясное ассорти',
-        price: '590сом',
+        price: '650сом',
         image: '/sultan.png'
+      },
+      {
+        name: 'Фрикассе из курицы',
+        description: 'Нежная курица в сливочном соусе с овощами',
+        price: '430сом',
+        image: '/frikasse-kur.png'
+      },
+      {
+        name: 'Ачуу эт',
+        description: 'Традиционное киргизское блюдо - тушеное мясо с острым соусом',
+        price: '520сом',
+        image: '/achuu-et.png'
       },
       {
         name: 'Бифштекс особый',
         description: 'Сочный бифштекс из премиальной говядины с соусом',
-        price: '220сом',
+        price: '240/370сом',
         image: '/bifshteks.png'
-      },
-      {
-        name: 'Манты',
-        description: 'Паровые манты с сочной мясной начинкой',
-        price: '250сом',
-        image: '/manty.png'
       },
       {
         name: 'Мясо с овощами',
         description: 'Обжаренное мясо с сезонными овощами',
-        price: '390сом',
-        image: '/myaso.png'
+        price: '410сом',
+        image: '/meet-ovosh.png'
       },
-      {
+            {
+        name: 'Допанжи',
+        description: 'Уйгурское блюдо - курица с картофелем и овощами на большой сковороде',
+        price: '380сом',
+        image: '/dopanji.png'
+      },
+        {
         name: 'Хинкал по грузински',
         description: 'Грузинские хинкали с мясным соком внутри',
-        price: '300сом',
-        image: '/hinkal.png'
+        price: '350сом',
+        image: '/hinkali.png'
+      },
+      {
+        name: 'Манты',
+        description: 'Паровые манты с сочной мясной начинкой',
+        price: '280сом',
+        image: '/manty.png'
       },
       {
         name: 'Долма по грузински',
@@ -231,59 +213,88 @@ const menuCategories = {
         image: '/dolma.png'
       },
       {
-        name: 'Паста с фрикадельками в томатном соусе',
-        description: 'Итальянская паста с домашними фрикадельками',
-        price: '350сом',
-        image: '/pasta.png'
-      },
-      {
-        name: 'Курица по-царски',
-        description: 'Куриное филе под сливочно-грибным соусом',
-        price: '400сом',
-        image: '/kurica_car.png'
-      },
-      {
-        name: 'Корейка баранина на мангале',
-        description: 'Сочная баранья корейка, приготовленная на углях',
-        price: '180сом/100гр',
-        image: '/koreyka.png'
-      },
-      {
-        name: 'Дапан Жи',
-        description: 'Уйгурское блюдо - курица с картофелем и овощами на большой сковороде',
-        price: '380сом',
-        image: '/dapanji.png'
-      },
-      {
         name: 'Бефстроганов',
         description: 'Классический бефстроганов из нежной говядины со сметанным соусом',
-        price: '400сом',
-        image: '/befsroganov.png'
+        price: '430сом',
+        image: '/befstroganov.png'
       },
       {
-        name: 'Куурдак с картошкой',
-        description: 'Традиционное киргизское блюдо - жареное мясо с картофелем',
+        name: 'Бон филе из говяжей вырезки',
+        description: 'Итальянская паста с домашними фрикадельками',
+        price: '520сом',
+        image: '/bon-file.png'
+      },
+       {
+        name: 'Медальон',
+        description: 'Итальянская паста с домашними фрикадельками',
         price: '490сом',
-        image: '/kuurdaq.png'
+        image: '/medalyon.png'
+      },
+       {
+        name: 'Томлёная баранья рулька',
+        description: 'Итальянская паста с домашними фрикадельками',
+        price: '650сом',
+        image: '/tomlyonnaya.png'
+      },
+       {
+        name: 'Куриное филе в сливочном соусе',
+        description: 'Итальянская паста с домашними фрикадельками',
+        price: '450сом',
+        image: '/file-sous.png'
       },
       {
         name: 'Фетучини с курицей',
         description: 'Паста фетучини с курицей в сливочном соусе',
-        price: '380сом',
-        image: '/fetuchini.png'
+        price: '410сом',
+        image: '/fetuchini-kur.png'
+      },
+      {
+        name: 'Куурдак с картошкой',
+        description: 'Традиционное киргизское блюдо - жареное мясо с картофелем',
+        price: '530сом',
+        image: '/kuurdan-kot.png'
       },
       {
         name: 'Жаровня из курицы',
         description: 'Ароматная курица с овощами в традиционной жаровне',
-        price: '360сом',
-        image: '/jarovnya_kur.png'
+        price: '320сом',
+        image: '/jar-kur.png'
       },
       {
         name: 'Жаровня из говядины / особая',
         description: 'Говядина с овощами и специями в жаровне - фирменный рецепт',
-        price: '440/480сом',
-        image: '/jarovnya_gov.png'
-      }
+        price: '440/400сом',
+        image: '/jar-gov.png'
+      },
+      {
+        name: 'Самса в тандыре',
+        description: 'Премиальный мраморный стейк с насыщенным вкусом',
+        price: '100сом',
+        image: '/samsa.png'
+      },
+    ]
+  },
+  meet: {
+    title: 'Мясо из казана',
+    items: [
+      {
+        name: 'Мясной сет 6-10',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '4500/6000сом',
+        image: '/meet-set-10.png'
+      },
+      {
+        name: 'Мясной сет 4-5',
+        description: 'Традиционный узбекский суп с пельменями и насыщенным бульоном',
+        price: '3000сом',
+        image: '/meet-set-5.png'
+      },
+      {
+        name: 'Мясной сет 2-3',
+        description: 'Пряный грузинский суп с говядиной, рисом и грецкими орехами',
+        price: '1750сом',
+        image: '/meet-set-3.png'
+      },
     ]
   },
   steaks: {
@@ -292,26 +303,101 @@ const menuCategories = {
       {
         name: 'Т-Бон стейк',
         description: 'Легендарный стейк на кости с филе-миньоном и стриплойном',
-        price: '850сом',
-        image: '/steyk_tbon.png'
+        price: '900сом',
+        image: '/tbon-steyk.png'
       },
       {
         name: 'Томогавк',
         description: 'Впечатляющий рибай на длинной кости, идеален для компании',
-        price: '850сом',
-        image: '/steyk_tomogavk.png'
+        price: '950сом',
+        image: '/tomogavk.png'
       },
       {
         name: 'Стейк рибай',
         description: 'Премиальный мраморный стейк с насыщенным вкусом',
-        price: '950сом',
-        image: '/steyk_ribay.png'
+        price: '1200сом',
+        image: '/ribay-steyk.png'
       },
       {
         name: 'Стейк из семги',
         description: 'Сочный стейк из норвежской семги, приготовленный на гриле',
-        price: '850сом',
-        image: '/steyk_semga.png'
+        price: '950сом',
+        image: '/semga-steyk.png'
+      },
+      {
+        name: 'Корейка ягнёнка на мангале',
+        description: 'Премиальный мраморный стейк с насыщенным вкусом',
+        price: '650сом',
+        image: '/koreyka-mangal.png'
+      },
+    ]
+  },
+  fastfood: {
+    title: 'Фаст Фуд',
+    items: [
+      {
+        name: 'Шаурма куриный',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '240сом',
+        image: '/shaurma-kur.png'
+      },
+      {
+        name: 'Шаурма говядина',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '260сом',
+        image: '/shaurma-gov.png'
+      },
+      {
+        name: 'Гамбургер с говядиной',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '250сом',
+        image: '/gam-gov.png'
+      },
+      {
+        name: 'Чикен бургер',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '230сом',
+        image: '/gam-chiken.png'
+      },
+      {
+        name: 'Чизбургер',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '250сом',
+        image: '/chizburger.png'
+      },
+      {
+        name: 'Картофель фри с сыром',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '100сом',
+        image: '/fri.png'
+      },
+      {
+        name: 'Картофельные дольки с сыром',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '100сом',
+        image: '/fri-dolki.png'
+      },
+      {
+        name: 'Картофельные шарики c сыром ',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '100сом',
+        image: '/fri-sharik.png'
+      },
+      {
+        name: 'Соусы',
+        description: 'Киргизский суп из перепелок с овощами и специями',
+        price: '50сом',
+        image: '/sous.png'
+      },
+    ]
+  },
+  shashlyk: {
+    title: 'Шашлыки',
+    items: [
+      {
+        name: 'Шашлыки',
+        description: 'Освежающий лимонад с голубым кюрасао',
+        image: '/shashlyk.png'
       }
     ]
   },
@@ -321,23 +407,18 @@ const menuCategories = {
       {
         name: 'Пирожок',
         description: 'Традиционные пирожки с мясом или овощами, свежая выпечка',
-        price: '1900сом/1кг',
-        image: '/zakaz_pirojok.png'
+        price: '2000сом/1кг',
+        image: '/pirojok.png'
       },
       {
         name: 'Плов чайханский',
         description: 'Классический узбекский плов с бараниной по старинному рецепту',
-        price: '1500сом/0,5кг 2400сом/1кг',
-        image: '/zakaz_plov.png'
+        price: '2600сом/1кг',
+        image: '/plov-chay.png'
       },
-      {
-        name: 'Мясо в тандыре',
-        description: 'Сочное мясо, приготовленное в традиционной печи-тандыре',
-        price: '1800сом/1кг',
-        image: '/zakaz_myaso.png'
-      }
     ]
   },
+
   pizza: {
     title: 'Пиццы',
     items: [
@@ -381,36 +462,36 @@ const menuCategories = {
         name: 'Хачапури по аджарски',
         description: 'Традиционная грузинская лепёшка с сыром и яйцом',
         price: '300сом',
-        image: '/hachapuri.png'
+        image: '/xachipuri-ad.png'
       },
       {
         name: 'Хачапури по мергельски',
         description: 'Закрытая лепёшка с сыром',
         price: '300сом',
-        image: '/pizza-megrel.png'
+        image: '/xachipuri-mergel.png'
       },
       {
         name: 'Боорсок с каймаком',
         description: 'Традиционные жареные пончики с густой сметаной',
-        price: '150сом',
+        price: '200сом',
         image: '/boorsoq.png'
       },
       {
         name: 'Кутабы с мясом',
         description: 'Азербайджанские лепёшки с мясной начинкой',
-        price: '130сом/1шт',
-        image: '/kutabi-myaso.png'
+        price: '150сом/1шт',
+        image: '/kutabi-meet.png'
       },
       {
         name: 'Кутабы с сыром',
         description: 'Тонкие лепёшки с сырной начинкой',
-        price: '130сом/1шт',
+        price: '150сом/1шт',
         image: '/kutabi-sir.png'
       },
       {
         name: 'Кутабы с зеленью',
         description: 'Начинка из свежей зелени и специй',
-        price: '120сом/1шт',
+        price: '140сом/1шт',
         image: '/kutabi-zelen.png'
       },
       {
@@ -421,109 +502,33 @@ const menuCategories = {
       }
     ]
   },
+    rolls: {
+    title: 'Роллы',
+    items: [
+      {
+        name: 'Роллы',
+        description: 'Свежие фрукты с нежным кремом',
+        image: '/rolls.png'
+      }
+    ]
+  },
   desserts: {
     title: 'Десерты',
     items: [
       {
-        name: 'Фруктовый десерт',
+        name: 'Десерты',
         description: 'Свежие фрукты с нежным кремом',
-        price: '120сом',
-        image: '/dessert-frukto.png'
-      },
-      {
-        name: 'Медовик',
-        description: 'Классический торт со сметанным кремом',
-        price: '120сом',
-        image: '/dessert-medovik.png'
-      },
-      {
-        name: 'Меринговый',
-        description: 'Воздушный десерт с безе и кремом',
-        price: '120сом',
-        image: '/dessert-merin.png'
-      },
-      {
-        name: 'Панчо',
-        description: 'Шоколадный десерт с ананасами',
-        price: '200сом',
-        image: '/dessert-pancho.png'
-      },
-      {
-        name: 'Сникерс',
-        description: 'Торт с карамелью, арахисом и шоколадом',
-        price: '200сом',
-        image: '/dessert-snikers.png'
-      },
-      {
-        name: 'Евро десерт',
-        description: 'Изысканный слоёный торт',
-        price: '225сом',
-        image: '/dessert-evro.png'
-      },
-      {
-        name: 'Евро десерт 2',
-        description: 'Нежный бисквитный торт с кремом',
-        price: '225сом',
-        image: '/dessert-evro2.png'
-      },
-      {
-        name: 'Красный бархат',
-        description: 'Классический торт с сырным кремом',
-        price: '200сом',
-        image: '/dessert-barhat.png'
-      },
-      {
-        name: 'Чоко бум',
-        description: 'Насыщенный шоколадный торт',
-        price: '200сом',
-        image: '/dessert-choko.png'
+        image: '/dessert.png'
       }
     ]
   },
-  tea: {
-    title: 'Фирменные чаи',
+  vafli: {
+    title: 'Венские вафли',
     items: [
       {
-        name: 'Чай чёрный',
+        name: 'Венские вафли',
         description: 'Классический черный чай',
-        price: '20сом',
-        image: '/tea-black.png'
-      },
-      {
-        name: 'Чай зелёный',
-        description: 'Освежающий зеленый чай',
-        price: '20сом',
-        image: '/tea-green.png'
-      },
-      {
-        name: 'Чай мята с мёдом',
-        description: 'Ароматный мятный чай с натуральным медом',
-        price: '150сом',
-        image: '/tea-myod.png'
-      },
-      {
-        name: 'Чай имбирный с лимоном',
-        description: 'Согревающий имбирный чай с лимоном',
-        price: '150сом',
-        image: '/tea-limon.png'
-      },
-      {
-        name: 'Чай фруктовый',
-        description: 'Ароматный чай с фруктами',
-        price: '180сом',
-        image: '/tea-fruktoviy.png'
-      },
-      {
-        name: 'Чай наглый фрукт',
-        description: 'Яркий фруктовый микс',
-        price: '200сом',
-        image: '/tea-frukt.png'
-      },
-      {
-        name: 'Чай с облепихой',
-        description: 'Витаминный чай с облепихой и медом',
-        price: '200сом',
-        image: '/tea-oblep.png'
+        image: '/vafli.png'
       }
     ]
   },
@@ -531,70 +536,9 @@ const menuCategories = {
     title: 'Лимонады',
     items: [
       {
-        name: 'Лимонад голубая лагуна',
+        name: 'Лимонады',
         description: 'Освежающий лимонад с голубым кюрасао',
-        price: '0.3л/130сом 1л/300сом',
-        image: '/limonad-laguna.png'
-      },
-      {
-        name: 'Лимонад клубника маракуйя',
-        description: 'Экзотический микс клубники и маракуйи',
-        price: '300сом',
-        image: '/limonad-klubnika.png'
-      },
-      {
-        name: 'Лимонад маракуйя',
-        description: 'Тропический лимонад с маракуйей',
-        price: '350сом',
-        image: '/limonad-marakuya.png'
-      },
-      {
-        name: 'Мохито клубника',
-        description: 'Клубничный мохито с мятой',
-        price: '0.3л/130сом 1л/300сом',
-        image: '/mohito-klubnika.png'
-      },
-      {
-        name: 'Милкшейк клубничный',
-        description: 'Нежный клубничный милкшейк',
-        price: '0.3л/150сом',
-        image: '/milk-klubnika.png'
-      },
-      {
-        name: 'Милкшейк ванильный',
-        description: 'Классический ванильный милкшейк',
-        price: '0.3л/150сом',
-        image: '/milk-vanil.png'
-      },
-      {
-        name: 'Тархун',
-        description: 'Освежающий напиток с эстрагоном',
-        price: '0.3л/130сом 1л/300сом',
-        image: '/limonad-tarhun.png'
-      },
-      {
-        name: 'Мохито',
-        description: 'Освежающий мохито с лаймом',
-        price: '0.3л/130сом 1л/300сом',
-        image: '/mohito.png'
-      },
-      {
-        name: 'Мохито классический',
-        description: 'Классический рецепт мохито',
-        price: '0.3л/130сом 1л/300сом',
-        image: '/mohito-klassik.png'
-      },
-      {
-        name: 'Компот малиновый',
-        description: 'Домашний компот из малины',
-        price: '150сом',
-        image: '/kompot-malina.png'
-      },
-      {
-        name: 'Компот домашний',
-        description: 'Традиционный домашний компот',
-        price: '150сом',
-        image: '/kompot-doma.png'
+        image: '/limonad.png'
       }
     ]
   },
@@ -648,13 +592,16 @@ function Menu() {
     { id: 'salads', label: 'Салаты' },
     { id: 'soups', label: 'Первые блюда' },
     { id: 'mainDishes', label: 'Вторые блюда' },
+    { id: 'meet', label: 'Мясо из казана' },
     { id: 'steaks', label: 'Стейки' },
+    { id: 'shashlyk', label: 'Шашлыки' },
     { id: 'custom', label: 'Блюда на заказ' },
+    { id: 'fastfood', label: 'Фаст Фуд' },
     { id: 'pizza', label: 'Пиццы' },
+    { id: 'rolls', label: 'Роллы' },
     { id: 'desserts', label: 'Десерты' },
-    { id: 'tea', label: 'Фирменные чаи' },
-    { id: 'lemonade', label: 'Лимонады' },
-    { id: 'iceCream', label: 'Мороженое' }
+    { id: 'vafli', label: 'Венские вафли' },
+    { id: 'lemonade', label: 'Лимонады' }
   ];
 
   const currentCategory = menuCategories[selectedCategory as keyof typeof menuCategories];
