@@ -32,17 +32,41 @@ function Checkout() {
         total: totalPrice,
       };
 
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-order`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          },
-          body: JSON.stringify(orderData),
-        }
-      );
+      // Формируем сообщение для Telegram
+      let message = `🍽 *Новый заказ!*\n\n`;
+      message += `👤 *Имя:* ${orderData.name}\n`;
+      message += `📞 *Телефон:* ${orderData.phone}\n`;
+      message += `📍 *Адрес:* ${orderData.address}\n`;
+
+      if (orderData.comment) {
+        message += `💬 *Комментарий:* ${orderData.comment}\n`;
+      }
+
+      message += `\n📋 *Состав заказа:*\n`;
+
+      orderData.items.forEach((item, index) => {
+        message += `\n${index + 1}. ${item.name} x${item.quantity} — ${item.total} сом`;
+      });
+
+      message += `\n\n💰 *Итого: ${orderData.total} сом*`;
+
+      // Отправляем в Telegram напрямую
+      const TELEGRAM_BOT_TOKEN = '8414275953:AAFfT4IV7jFYm67Zd3isrzy_azegfDMlD88';
+      const TELEGRAM_CHAT_ID = '5779574723';
+
+      const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+      const response = await fetch(telegramUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message,
+          parse_mode: 'Markdown',
+        }),
+      });
 
       if (!response.ok) {
         throw new Error('Ошибка при отправке заказа');
