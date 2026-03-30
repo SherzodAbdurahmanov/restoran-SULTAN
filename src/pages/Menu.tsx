@@ -627,18 +627,18 @@ function Menu() {
   return (
     <div className="pt-20 min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-zinc-950 border-b border-amber-900/20">
+      <section className="relative py-12 sm:py-16 md:py-20 bg-zinc-950 border-b border-amber-900/20">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-amber-600 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-600 rounded-full blur-3xl"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-6xl md:text-7xl font-bold text-amber-500 mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-amber-500 mb-4 sm:mb-6">
               Наше меню
             </h1>
-            <div className="w-20 h-1 bg-gradient-to-r from-amber-600 to-yellow-500 mx-auto mb-6"></div>
-            <p className="text-xl text-amber-100/80 max-w-2xl mx-auto">
+            <div className="w-20 h-1 bg-gradient-to-r from-amber-600 to-yellow-500 mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-base sm:text-lg md:text-xl text-amber-100/80 max-w-2xl mx-auto px-4">
               Изысканные блюда восточной и европейской кухни из свежих халяльных продуктов
             </p>
           </div>
@@ -648,12 +648,12 @@ function Menu() {
       {/* Category Tabs */}
       <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-sm border-b border-amber-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-x-auto scrollbar-hide py-4 gap-3">
+          <div className="flex overflow-x-auto scrollbar-hide py-3 sm:py-4 gap-2 sm:gap-3">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-medium whitespace-nowrap transition-all ${
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium whitespace-nowrap transition-all text-sm sm:text-base ${
                   selectedCategory === category.id
                     ? 'bg-gradient-to-r from-amber-600 to-yellow-500 text-black shadow-lg shadow-amber-900/50'
                     : 'bg-zinc-900 text-amber-500 hover:bg-amber-950/50 border border-amber-900/20'
@@ -667,13 +667,13 @@ function Menu() {
       </section>
 
       {/* Menu Items */}
-      <section className="py-16 bg-black">
+      <section className="py-10 sm:py-12 md:py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-amber-500 mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-500 mb-8 sm:mb-10 md:mb-12 text-center">
             {currentCategory.title}
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {currentCategory.items.map((item, index) => {
               const itemId = `${item.name}-${item.price}`;
               const isAdded = addedItems.has(itemId);
@@ -697,13 +697,13 @@ function Menu() {
                       </div>
                     )}
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-amber-500 mb-3">{item.name}</h3>
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-amber-500 mb-3">{item.name}</h3>
                     {hasPrice && (
                       <button
                         onClick={() => handleAddToCart(item)}
                         disabled={isAdded}
-                        className={`w-full py-3 rounded-full font-semibold transition-all flex items-center justify-center gap-2 ${
+                        className={`w-full py-2.5 sm:py-3 rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-sm sm:text-base ${
                           isAdded
                             ? 'bg-green-600 text-white'
                             : 'bg-gradient-to-r from-amber-600 to-yellow-500 text-black hover:from-amber-500 hover:to-yellow-400 shadow-lg shadow-amber-900/30'
@@ -711,12 +711,12 @@ function Menu() {
                       >
                         {isAdded ? (
                           <>
-                            <Check className="w-5 h-5" />
+                            <Check className="w-4 h-4 sm:w-5 sm:h-5" />
                             Добавлено
                           </>
                         ) : (
                           <>
-                            <ShoppingCart className="w-5 h-5" />
+                            <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
                             В корзину
                           </>
                         )}
@@ -731,20 +731,20 @@ function Menu() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-zinc-950 border-t border-amber-900/20">
+      <section className="py-12 sm:py-16 md:py-20 bg-zinc-950 border-t border-amber-900/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-amber-500 mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-500 mb-4 sm:mb-6">
             Готовы сделать заказ?
           </h2>
-          <p className="text-xl text-amber-100/80 mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-amber-100/80 mb-6 sm:mb-8 px-4">
             Забронируйте столик или закажите доставку прямо сейчас
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="https://wa.me/996226500800"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-8 py-4 rounded-full hover:from-amber-500 hover:to-yellow-400 transition-all shadow-lg shadow-amber-900/50 hover:shadow-xl hover:shadow-amber-900/70 font-semibold text-lg"
+              className="bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-amber-500 hover:to-yellow-400 transition-all shadow-lg shadow-amber-900/50 hover:shadow-xl hover:shadow-amber-900/70 font-semibold text-base sm:text-lg"
             >
               Связаться с нами
             </a>
@@ -752,7 +752,7 @@ function Menu() {
               href="https://wa.me/996226500800"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-transparent text-amber-500 px-8 py-4 rounded-full hover:bg-amber-900/20 transition-all shadow-lg font-semibold text-lg border-2 border-amber-600"
+              className="bg-transparent text-amber-500 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-amber-900/20 transition-all shadow-lg font-semibold text-base sm:text-lg border-2 border-amber-600"
             >
               Забронировать столик
             </a>
