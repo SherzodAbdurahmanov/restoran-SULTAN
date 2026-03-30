@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { ShoppingCart, Check } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { MenuItem } from '../types/menu';
 
 const menuCategories = {
   salads: {
@@ -587,6 +590,21 @@ const menuCategories = {
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState('salads');
+  const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
+  const { addItem } = useCart();
+
+  const handleAddToCart = (item: MenuItem) => {
+    addItem(item);
+    const itemId = `${item.name}-${item.price}`;
+    setAddedItems((prev) => new Set(prev).add(itemId));
+    setTimeout(() => {
+      setAddedItems((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(itemId);
+        return newSet;
+      });
+    }, 2000);
+  };
 
   const categories = [
     { id: 'salads', label: 'Салаты' },
@@ -656,27 +674,58 @@ function Menu() {
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentCategory.items.map((item, index) => (
-              <div
-                key={index}
-                className="group bg-zinc-950 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 border border-amber-900/20"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                  <div className="absolute bottom-4 right-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-4 py-2 rounded-full font-bold text-lg shadow-lg">
-                    {item.price}
+            {currentCategory.items.map((item, index) => {
+              const itemId = `${item.name}-${item.price}`;
+              const isAdded = addedItems.has(itemId);
+              const hasPrice = item.price && item.price !== 'undefined';
+
+              return (
+                <div
+                  key={index}
+                  className="group bg-zinc-950 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 border border-amber-900/20"
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    {hasPrice && (
+                      <div className="absolute bottom-4 right-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-4 py-2 rounded-full font-bold text-lg shadow-lg">
+                        {item.price}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-amber-500 mb-3">{item.name}</h3>
+                    {hasPrice && (
+                      <button
+                        onClick={() => handleAddToCart(item)}
+                        disabled={isAdded}
+                        className={`w-full py-3 rounded-full font-semibold transition-all flex items-center justify-center gap-2 ${
+                          isAdded
+                            ? 'bg-green-600 text-white'
+                            : 'bg-gradient-to-r from-amber-600 to-yellow-500 text-black hover:from-amber-500 hover:to-yellow-400 shadow-lg shadow-amber-900/30'
+                        }`}
+                      >
+                        {isAdded ? (
+                          <>
+                            <Check className="w-5 h-5" />
+                            Добавлено
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingCart className="w-5 h-5" />
+                            В корзину
+                          </>
+                        )}
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-amber-500">{item.name}</h3>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

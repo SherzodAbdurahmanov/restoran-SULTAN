@@ -1,11 +1,14 @@
-import { Phone, MapPin, Clock, Mail } from 'lucide-react';
+import { Phone, MapPin, Clock, Mail, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 function Layout({ children }: LayoutProps) {
+  const { totalItems } = useCart();
+
   return (
     <div className="min-h-screen bg-black">
       {/* Navigation */}
@@ -21,9 +24,22 @@ function Layout({ children }: LayoutProps) {
               <Link to="/menu" className="text-amber-500 hover:text-amber-400 transition-colors font-medium">Меню</Link>
               <a href="/#contact" className="text-amber-500 hover:text-amber-400 transition-colors font-medium">Контакты</a>
             </div>
-            <a href="https://wa.me/996226500800" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-6 py-2.5 rounded-full hover:from-amber-500 hover:to-yellow-400 transition-all font-semibold shadow-lg shadow-amber-900/50">
-              Забронировать
-            </a>
+            <div className="flex items-center gap-4">
+              <Link
+                to="/cart"
+                className="relative text-amber-500 hover:text-amber-400 transition-colors"
+              >
+                <ShoppingCart className="w-6 h-6" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-gradient-to-r from-amber-600 to-yellow-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
+              <a href="https://wa.me/996226500800" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-6 py-2.5 rounded-full hover:from-amber-500 hover:to-yellow-400 transition-all font-semibold shadow-lg shadow-amber-900/50">
+                Забронировать
+              </a>
+            </div>
           </div>
         </div>
       </nav>
