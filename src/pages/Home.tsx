@@ -169,7 +169,7 @@ function Home() {
             <div className="group bg-black rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 border border-amber-900/20">
               <div className="relative overflow-hidden">
                 <img
-                  src="/priprava-dla-salata.jpg"
+                  src="https://images.pexels.com/photos/1095550/pexels-photo-1095550.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Салаты"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
