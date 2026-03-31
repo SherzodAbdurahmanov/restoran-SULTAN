@@ -58,6 +58,7 @@ function Home() {
                     key={index}
                     src={image}
                     alt={`Restaurant ${index + 1}`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                       index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                     }`}
@@ -142,11 +143,13 @@ function Home() {
               <img
                 src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=500"
                 alt="Restaurant Dish"
+                loading="lazy"
                 className="rounded-2xl shadow-xl shadow-amber-900/50 h-48 sm:h-56 md:h-64 w-full object-cover hover:scale-105 transition-transform duration-300 border border-amber-900/20"
               />
               <img
                 src="https://images.pexels.com/photos/1126728/pexels-photo-1126728.jpeg?auto=compress&cs=tinysrgb&w=500"
                 alt="Chef Cooking"
+                loading="lazy"
                 className="rounded-2xl shadow-xl shadow-amber-900/50 h-48 sm:h-56 md:h-64 w-full object-cover mt-4 sm:mt-6 md:mt-8 hover:scale-105 transition-transform duration-300 border border-amber-900/20"
               />
             </div>
@@ -169,8 +172,9 @@ function Home() {
             <div className="group bg-black rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 border border-amber-900/20">
               <div className="relative overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/1095550/pexels-photo-1095550.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="https://images.pexels.com/photos/1095550/pexels-photo-1095550.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Салаты"
+                  loading="lazy"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
@@ -204,6 +208,7 @@ function Home() {
                 <img
                   src="/vid-gotovoi-vkusnoi-edy-na-hodu_(1).jpg"
                   alt="Вторые блюда"
+                  loading="lazy"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
@@ -237,6 +242,7 @@ function Home() {
                 <img
                   src="/lomtik-cizkeika-s-malinovym-siropom-otstaviv-casku-agod_(1)_(1).jpg"
                   alt="Десерты"
+                  loading="lazy"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>

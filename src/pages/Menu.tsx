@@ -688,6 +688,7 @@ function Menu() {
                     <img
                       src={item.image}
                       alt={item.name}
+                      loading="lazy"
                       className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
