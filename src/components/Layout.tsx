@@ -40,7 +40,7 @@ function Layout({ children }: LayoutProps) {
                 Забронировать
               </a>
               <a href="https://wa.me/996226500800" target="_blank" rel="noopener noreferrer" className="sm:hidden bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-3 py-2 rounded-full hover:from-amber-500 hover:to-yellow-400 transition-all font-semibold shadow-lg shadow-amber-900/50 text-xs">
-                Заказать
+                Позвонить
               </a>
             </div>
           </div>
