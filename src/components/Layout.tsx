@@ -161,7 +161,7 @@ function Layout({ children }: LayoutProps) {
             </div>
           </div>
           <div className="border-t border-amber-900/20 pt-6 sm:pt-8 text-center text-amber-100/60 text-sm sm:text-base">
-            <p>&copy; 2025 Sultan Restaurant. Все права защищены.</p>
+            <p>&copy; 2026 Sultan Restaurant. Все права защищены.</p>
           </div>
         </div>
       </footer>
