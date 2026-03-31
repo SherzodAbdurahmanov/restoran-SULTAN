@@ -1,8 +1,10 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "sultan-restaurant",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Современный веб-сайт ресторана Sultan с онлайн-меню и системой заказов",
+  "author": "Sultan Restaurant",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
