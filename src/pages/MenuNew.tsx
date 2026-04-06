@@ -21,6 +21,12 @@ function MenuNew() {
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   const { addItem } = useCart();
 
+  const normalizeImagePath = (path: string) => {
+    if (!path) return '';
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `/${cleanPath}`;
+  };
+
   const categories = [
     { id: 'salads', label: 'Салаты' },
     { id: 'soups', label: 'Первые блюда' },
@@ -175,11 +181,11 @@ function MenuNew() {
                         </div>
                       ) : (
                         <img
-                          src={item.image}
+                          src={normalizeImagePath(item.image)}
                           alt={item.name}
                           loading="lazy"
                           onError={() => {
-                            console.error('Failed to load image:', item.image);
+                            console.error('Failed to load image:', item.image, 'normalized:', normalizeImagePath(item.image));
                             setImageErrors(prev => new Set(prev).add(item.id));
                           }}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
