@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { LogOut, Search, Filter, AlertCircle, Check, X } from 'lucide-react';
 
 interface MenuItem {
@@ -44,6 +44,14 @@ function Admin() {
   const loadMenuItems = async () => {
     try {
       setLoading(true);
+
+      if (!isSupabaseConfigured()) {
+        console.warn('Supabase not configured');
+        setMenuItems([]);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('menu_items')
         .select('*')

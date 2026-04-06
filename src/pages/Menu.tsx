@@ -593,13 +593,21 @@ function Menu() {
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
   const { addItem } = useCart();
 
-  const handleAddToCart = (item: MenuItem) => {
-    addItem(item);
-    setAddedItems((prev) => new Set(prev).add(item.id));
+  const handleAddToCart = (item: Partial<MenuItem> & { name: string }) => {
+    const itemWithId: MenuItem = {
+      id: item.id || `temp-${item.name.replace(/\s+/g, '-').toLowerCase()}`,
+      name: item.name,
+      description: item.description || '',
+      price: item.price || '0сом',
+      image: item.image || ''
+    };
+
+    addItem(itemWithId);
+    setAddedItems((prev) => new Set(prev).add(itemWithId.id));
     setTimeout(() => {
       setAddedItems((prev) => {
         const newSet = new Set(prev);
-        newSet.delete(item.id);
+        newSet.delete(itemWithId.id);
         return newSet;
       });
     }, 2000);
@@ -674,8 +682,9 @@ function Menu() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {currentCategory.items.map((item, index) => {
-              const isAdded = addedItems.has(item.id);
-              const hasPrice = item.price && item.price !== 'undefined';
+              const itemId = ('id' in item && typeof item.id === 'string') ? item.id : `temp-${item.name.replace(/\s+/g, '-').toLowerCase()}`;
+              const isAdded = addedItems.has(itemId);
+              const hasPrice = ('price' in item) && item.price && item.price !== 'undefined';
 
               return (
                 <div
@@ -690,7 +699,7 @@ function Menu() {
                       className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                    {hasPrice && (
+                    {hasPrice && 'price' in item && (
                       <div className="absolute bottom-4 right-4 bg-gradient-to-r from-amber-600 to-yellow-500 text-black px-4 py-2 rounded-full font-bold text-lg shadow-lg">
                         {item.price}
                       </div>

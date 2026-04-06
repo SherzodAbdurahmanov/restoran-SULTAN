@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ShoppingCart, Check, XCircle, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 interface MenuItem {
   id: string;
@@ -45,6 +45,14 @@ function MenuNew() {
   const loadMenuItems = async () => {
     try {
       setLoading(true);
+
+      if (!isSupabaseConfigured()) {
+        console.warn('Supabase not configured - menu will be empty');
+        setMenuItems([]);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('menu_items')
         .select('*')
@@ -59,6 +67,7 @@ function MenuNew() {
       setMenuItems(data || []);
     } catch (error) {
       console.error('Error loading menu items:', error);
+      setMenuItems([]);
     } finally {
       setLoading(false);
     }
@@ -72,9 +81,9 @@ function MenuNew() {
     addItem({
       id: item.id,
       name: item.name,
+      description: item.description,
       price: item.price,
       image: item.image,
-      quantity: 1,
     });
 
     setAddedItems(prev => new Set(prev).add(item.id));

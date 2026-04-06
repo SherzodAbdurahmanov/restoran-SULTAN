@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { CheckCircle, AlertCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 function Checkout() {
   const { items, totalPrice, clearCart, removeItem } = useCart();
@@ -24,6 +24,11 @@ function Checkout() {
       const itemIds = items.map(item => item.id);
 
       if (itemIds.length === 0) {
+        return true;
+      }
+
+      if (!isSupabaseConfigured()) {
+        console.warn('Supabase not configured - skipping validation');
         return true;
       }
 

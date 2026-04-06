@@ -1,4 +1,5 @@
 export interface MenuItem {
+  id: string;
   name: string;
   description: string;
   price: string;
@@ -6,7 +7,6 @@ export interface MenuItem {
 }
 
 export interface CartItem extends MenuItem {
-  id: string;
   quantity: number;
   numericPrice: number;
 }
