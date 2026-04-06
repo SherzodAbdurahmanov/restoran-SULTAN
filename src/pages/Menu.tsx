@@ -595,12 +595,11 @@ function Menu() {
 
   const handleAddToCart = (item: MenuItem) => {
     addItem(item);
-    const itemId = `${item.name}-${item.price}`;
-    setAddedItems((prev) => new Set(prev).add(itemId));
+    setAddedItems((prev) => new Set(prev).add(item.id));
     setTimeout(() => {
       setAddedItems((prev) => {
         const newSet = new Set(prev);
-        newSet.delete(itemId);
+        newSet.delete(item.id);
         return newSet;
       });
     }, 2000);
@@ -675,8 +674,7 @@ function Menu() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {currentCategory.items.map((item, index) => {
-              const itemId = `${item.name}-${item.price}`;
-              const isAdded = addedItems.has(itemId);
+              const isAdded = addedItems.has(item.id);
               const hasPrice = item.price && item.price !== 'undefined';
 
               return (

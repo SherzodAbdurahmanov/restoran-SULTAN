@@ -22,6 +22,11 @@ function Checkout() {
   const validateItemsAvailability = async () => {
     try {
       const itemIds = items.map(item => item.id);
+
+      if (itemIds.length === 0) {
+        return true;
+      }
+
       const { data, error } = await supabase
         .from('menu_items')
         .select('id, name, is_available')
@@ -29,13 +34,39 @@ function Checkout() {
 
       if (error) throw error;
 
-      const unavailable = data?.filter(item => !item.is_available).map(item => item.name) || [];
+      console.log('Cart items:', items);
+      console.log('DB items:', data);
 
-      if (unavailable.length > 0) {
-        setUnavailableItems(unavailable);
+      if (!data || data.length === 0) {
+        console.error('No items found in database');
+        setError('Некоторые блюда из корзины не найдены в меню');
+        return false;
+      }
 
-        unavailable.forEach(itemName => {
-          const item = items.find(i => i.name === itemName);
+      const unavailable = data.filter(item => !item.is_available);
+      const unavailableNames = unavailable.map(item => item.name);
+
+      const missingItems = items.filter(cartItem =>
+        !data.some(dbItem => dbItem.id === cartItem.id)
+      );
+
+      if (missingItems.length > 0) {
+        console.error('Items not found in DB:', missingItems);
+        const missingNames = missingItems.map(item => item.name);
+        setUnavailableItems(missingNames);
+
+        missingItems.forEach(item => {
+          removeItem(item.id);
+        });
+
+        return false;
+      }
+
+      if (unavailableNames.length > 0) {
+        setUnavailableItems(unavailableNames);
+
+        unavailable.forEach(dbItem => {
+          const item = items.find(i => i.id === dbItem.id);
           if (item) {
             removeItem(item.id);
           }

@@ -16,7 +16,26 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
     const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
+    if (!savedCart) return [];
+
+    try {
+      const parsedCart = JSON.parse(savedCart);
+
+      const hasInvalidIds = parsedCart.some((item: CartItem) =>
+        !item.id.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)
+      );
+
+      if (hasInvalidIds) {
+        console.log('Detected old cart format, clearing cart');
+        localStorage.removeItem('cart');
+        return [];
+      }
+
+      return parsedCart;
+    } catch {
+      localStorage.removeItem('cart');
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -30,7 +49,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addItem = (item: MenuItem) => {
     setItems((prevItems) => {
-      const itemId = `${item.name}-${item.price}`;
+      const itemId = item.id;
       const existingItem = prevItems.find((i) => i.id === itemId);
 
       if (existingItem) {
