@@ -18,6 +18,7 @@ function MenuNew() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('salads');
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   const { addItem } = useCart();
 
   const categories = [
@@ -51,6 +52,10 @@ function MenuNew() {
         .order('name', { ascending: true });
 
       if (error) throw error;
+
+      console.log('Loaded menu items:', data?.length);
+      console.log('Sample item:', data?.[0]);
+
       setMenuItems(data || []);
     } catch (error) {
       console.error('Error loading menu items:', error);
@@ -150,13 +155,27 @@ function MenuNew() {
                       !isAvailable ? 'opacity-75' : ''
                     }`}
                   >
-                    <div className="relative overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        loading="lazy"
-                        className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
-                      />
+                    <div className="relative overflow-hidden aspect-[4/3] bg-zinc-900">
+                      {imageErrors.has(item.id) ? (
+                        <div className="w-full h-full flex items-center justify-center bg-zinc-800">
+                          <div className="text-center p-4">
+                            <AlertCircle className="w-12 h-12 text-amber-500 mx-auto mb-2" />
+                            <p className="text-amber-100/60 text-sm">Изображение не найдено</p>
+                            <p className="text-amber-100/40 text-xs mt-1">{item.image}</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          loading="lazy"
+                          onError={() => {
+                            console.error('Failed to load image:', item.image);
+                            setImageErrors(prev => new Set(prev).add(item.id));
+                          }}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 
                       {!isAvailable && (
