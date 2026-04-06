@@ -19,12 +19,17 @@ function MenuNew() {
   const [selectedCategory, setSelectedCategory] = useState('salads');
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const { addItem } = useCart();
 
   const normalizeImagePath = (path: string) => {
     if (!path) return '';
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     return `/${cleanPath}`;
+  };
+
+  const handleImageLoad = (itemId: string) => {
+    setLoadedImages(prev => new Set(prev).add(itemId));
   };
 
   const categories = [
@@ -59,21 +64,47 @@ function MenuNew() {
         return;
       }
 
+      const cacheKey = 'menu_items_cache';
+      const cacheTimeKey = 'menu_items_cache_time';
+      const cacheValidDuration = 5 * 60 * 1000;
+
+      const cachedData = localStorage.getItem(cacheKey);
+      const cacheTime = localStorage.getItem(cacheTimeKey);
+
+      if (cachedData && cacheTime) {
+        const elapsed = Date.now() - parseInt(cacheTime);
+        if (elapsed < cacheValidDuration) {
+          console.log('Using cached menu data');
+          setMenuItems(JSON.parse(cachedData));
+          setLoading(false);
+          return;
+        }
+      }
+
       const { data, error } = await supabase
         .from('menu_items')
-        .select('*')
+        .select('id, name, description, price, category, image, is_available')
         .order('category', { ascending: true })
         .order('name', { ascending: true });
 
       if (error) throw error;
 
       console.log('Loaded menu items:', data?.length);
-      console.log('Sample item:', data?.[0]);
 
-      setMenuItems(data || []);
+      if (data) {
+        setMenuItems(data);
+        localStorage.setItem(cacheKey, JSON.stringify(data));
+        localStorage.setItem(cacheTimeKey, Date.now().toString());
+      }
     } catch (error) {
       console.error('Error loading menu items:', error);
-      setMenuItems([]);
+      const cachedData = localStorage.getItem('menu_items_cache');
+      if (cachedData) {
+        console.log('Using stale cache due to error');
+        setMenuItems(JSON.parse(cachedData));
+      } else {
+        setMenuItems([]);
+      }
     } finally {
       setLoading(false);
     }
@@ -180,16 +211,26 @@ function MenuNew() {
                           </div>
                         </div>
                       ) : (
-                        <img
-                          src={normalizeImagePath(item.image)}
-                          alt={item.name}
-                          loading="lazy"
-                          onError={() => {
-                            console.error('Failed to load image:', item.image, 'normalized:', normalizeImagePath(item.image));
-                            setImageErrors(prev => new Set(prev).add(item.id));
-                          }}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+                        <>
+                          {!loadedImages.has(item.id) && (
+                            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900 animate-pulse flex items-center justify-center">
+                              <div className="w-16 h-16 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin"></div>
+                            </div>
+                          )}
+                          <img
+                            src={normalizeImagePath(item.image)}
+                            alt={item.name}
+                            loading="lazy"
+                            onLoad={() => handleImageLoad(item.id)}
+                            onError={() => {
+                              console.error('Failed to load image:', item.image, 'normalized:', normalizeImagePath(item.image));
+                              setImageErrors(prev => new Set(prev).add(item.id));
+                            }}
+                            className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ${
+                              loadedImages.has(item.id) ? 'opacity-100' : 'opacity-0'
+                            }`}
+                          />
+                        </>
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 

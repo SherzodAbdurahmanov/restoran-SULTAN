@@ -11,6 +11,7 @@ function Home() {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,6 +20,17 @@ function Home() {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const nextIndex = (currentImageIndex + 1) % heroImages.length;
+    if (!loadedImages.has(nextIndex)) {
+      const img = new Image();
+      img.src = heroImages[nextIndex];
+      img.onload = () => {
+        setLoadedImages(prev => new Set(prev).add(nextIndex));
+      };
+    }
+  }, [currentImageIndex, heroImages, loadedImages]);
 
   return (
     <>
