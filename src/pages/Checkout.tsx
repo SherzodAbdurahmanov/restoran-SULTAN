@@ -154,7 +154,7 @@ function Checkout() {
 
       setTimeout(() => {
         navigate('/menu');
-      }, 3000);
+      }, 5000);
     } catch (error) {
       console.error('Ошибка:', error);
       alert('Произошла ошибка при отправке заказа. Пожалуйста, попробуйте снова.');
@@ -171,13 +171,28 @@ function Checkout() {
   if (showSuccess) {
     return (
       <div className="pt-20 min-h-screen bg-black flex items-center justify-center px-4">
-        <div className="text-center">
-          <CheckCircle className="w-20 h-20 sm:w-24 sm:h-24 text-green-500 mx-auto mb-4 sm:mb-6" />
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-500 mb-3 sm:mb-4">Заказ успешно отправлен!</h1>
-          <p className="text-base sm:text-lg text-amber-100/70 mb-6 sm:mb-8">
-            Мы свяжемся с вами в ближайшее время для подтверждения
-          </p>
-          <div className="text-sm sm:text-base text-amber-100/60">Перенаправление в меню...</div>
+        <div className="text-center animate-fade-in">
+          <div className="relative">
+            <div className="absolute inset-0 animate-ping">
+              <CheckCircle className="w-20 h-20 sm:w-24 sm:h-24 text-green-500/30 mx-auto" />
+            </div>
+            <CheckCircle className="w-20 h-20 sm:w-24 sm:h-24 text-green-500 mx-auto mb-6 sm:mb-8 relative animate-bounce" />
+          </div>
+          <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-2 border-green-500/50 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 backdrop-blur-sm">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-400 mb-4 sm:mb-6">
+              ✅ Заказ успешно отправлен!
+            </h1>
+            <p className="text-lg sm:text-xl text-amber-100 mb-3 sm:mb-4 font-medium">
+              Спасибо за ваш заказ!
+            </p>
+            <p className="text-base sm:text-lg text-amber-100/70">
+              Мы свяжемся с вами в ближайшее время для подтверждения
+            </p>
+          </div>
+          <div className="flex items-center justify-center gap-2 text-sm sm:text-base text-amber-100/60">
+            <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+            <span>Перенаправление в меню через несколько секунд...</span>
+          </div>
         </div>
       </div>
     );
