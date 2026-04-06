@@ -33,7 +33,8 @@ function MenuNew() {
     { id: 'rolls', label: 'Роллы' },
     { id: 'desserts', label: 'Десерты' },
     { id: 'vafli', label: 'Венские вафли' },
-    { id: 'lemonade', label: 'Лимонады' }
+    { id: 'lemonade', label: 'Лимонады' },
+    { id: 'iceCream', label: 'Мороженое' }
   ];
 
   useEffect(() => {
