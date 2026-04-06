@@ -16,20 +16,24 @@ interface MenuItem {
 function MenuNew() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('salads');
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
   const { addItem } = useCart();
 
   const categories = [
-    { id: 'all', label: 'Все блюда' },
     { id: 'salads', label: 'Салаты' },
-    { id: 'soups', label: 'Супы' },
-    { id: 'main', label: 'Основные блюда' },
-    { id: 'mangal', label: 'Мангал' },
-    { id: 'pizza', label: 'Пицца' },
-    { id: 'pasta', label: 'Паста' },
+    { id: 'soups', label: 'Первые блюда' },
+    { id: 'mainDishes', label: 'Вторые блюда' },
+    { id: 'meet', label: 'Мясо из казана' },
+    { id: 'steaks', label: 'Стейки' },
+    { id: 'shashlyk', label: 'Шашлыки' },
+    { id: 'custom', label: 'Блюда на заказ' },
+    { id: 'fastfood', label: 'Фаст Фуд' },
+    { id: 'pizza', label: 'Пиццы' },
+    { id: 'rolls', label: 'Роллы' },
     { id: 'desserts', label: 'Десерты' },
-    { id: 'drinks', label: 'Напитки' },
+    { id: 'vafli', label: 'Венские вафли' },
+    { id: 'lemonade', label: 'Лимонады' }
   ];
 
   useEffect(() => {
@@ -77,13 +81,11 @@ function MenuNew() {
     }, 2000);
   };
 
-  const filteredItems = selectedCategory === 'all'
-    ? menuItems
-    : menuItems.filter(item => item.category === selectedCategory);
+  const filteredItems = menuItems.filter(item => item.category === selectedCategory);
 
   const getCategoryTitle = () => {
     const category = categories.find(c => c.id === selectedCategory);
-    return category ? category.label : 'Все блюда';
+    return category ? category.label : '';
   };
 
   return (
