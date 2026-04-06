@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { LogOut, Search, Filter, AlertCircle, Check, X } from 'lucide-react';
+import { menuCache } from '../utils/menuCache';
 
 interface MenuItem {
   id: string;
@@ -86,6 +87,8 @@ function Admin() {
           item.id === itemId ? { ...item, is_available: !currentStatus } : item
         )
       );
+
+      menuCache.clear();
 
       setSuccess('Статус блюда обновлен');
       setTimeout(() => setSuccess(''), 3000);

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ShoppingCart, Check, XCircle, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { menuCache } from '../utils/menuCache';
 
 interface MenuItem {
   id: string;
@@ -64,21 +65,12 @@ function MenuNew() {
         return;
       }
 
-      const cacheKey = 'menu_items_cache';
-      const cacheTimeKey = 'menu_items_cache_time';
-      const cacheValidDuration = 5 * 60 * 1000;
-
-      const cachedData = localStorage.getItem(cacheKey);
-      const cacheTime = localStorage.getItem(cacheTimeKey);
-
-      if (cachedData && cacheTime) {
-        const elapsed = Date.now() - parseInt(cacheTime);
-        if (elapsed < cacheValidDuration) {
-          console.log('Using cached menu data');
-          setMenuItems(JSON.parse(cachedData));
-          setLoading(false);
-          return;
-        }
+      const cachedData = menuCache.get();
+      if (cachedData) {
+        console.log('Using cached menu data');
+        setMenuItems(cachedData);
+        setLoading(false);
+        return;
       }
 
       const { data, error } = await supabase
@@ -93,15 +85,14 @@ function MenuNew() {
 
       if (data) {
         setMenuItems(data);
-        localStorage.setItem(cacheKey, JSON.stringify(data));
-        localStorage.setItem(cacheTimeKey, Date.now().toString());
+        menuCache.set(data);
       }
     } catch (error) {
       console.error('Error loading menu items:', error);
-      const cachedData = localStorage.getItem('menu_items_cache');
-      if (cachedData) {
+      const staleCache = menuCache.getStale();
+      if (staleCache) {
         console.log('Using stale cache due to error');
-        setMenuItems(JSON.parse(cachedData));
+        setMenuItems(staleCache);
       } else {
         setMenuItems([]);
       }
