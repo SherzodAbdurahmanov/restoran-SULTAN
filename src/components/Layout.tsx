@@ -1,6 +1,7 @@
-import { Phone, MapPin, Clock, Mail, ShoppingCart } from 'lucide-react';
+import { Phone, MapPin, Clock, Mail, ShoppingCart, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   const { totalItems } = useCart();
+  const { isAdmin } = useAuth();
 
   return (
     <div className="min-h-screen bg-black">
@@ -25,6 +27,15 @@ function Layout({ children }: LayoutProps) {
               <a href="/#contact" className="text-amber-500 hover:text-amber-400 transition-colors font-medium text-sm lg:text-base">Контакты</a>
             </div>
             <div className="flex items-center gap-2 sm:gap-4">
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="relative text-amber-500 hover:text-amber-400 transition-colors p-2"
+                  title="Админ-панель"
+                >
+                  <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
+                </Link>
+              )}
               <Link
                 to="/cart"
                 className="relative text-amber-500 hover:text-amber-400 transition-colors p-2"

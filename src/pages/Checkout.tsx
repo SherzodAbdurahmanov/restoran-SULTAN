@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 function Checkout() {
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice, clearCart, removeItem } = useCart();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState('');
+  const [unavailableItems, setUnavailableItems] = useState<string[]>([]);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -16,9 +19,52 @@ function Checkout() {
     comment: '',
   });
 
+  const validateItemsAvailability = async () => {
+    try {
+      const itemIds = items.map(item => item.id);
+      const { data, error } = await supabase
+        .from('menu_items')
+        .select('id, name, is_available')
+        .in('id', itemIds);
+
+      if (error) throw error;
+
+      const unavailable = data?.filter(item => !item.is_available).map(item => item.name) || [];
+
+      if (unavailable.length > 0) {
+        setUnavailableItems(unavailable);
+
+        unavailable.forEach(itemName => {
+          const item = items.find(i => i.name === itemName);
+          if (item) {
+            removeItem(item.id);
+          }
+        });
+
+        return false;
+      }
+
+      return true;
+    } catch (err) {
+      console.error('Error validating items:', err);
+      setError('Ошибка проверки доступности блюд');
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+    setUnavailableItems([]);
     setIsSubmitting(true);
+
+    const isValid = await validateItemsAvailability();
+
+    if (!isValid) {
+      setIsSubmitting(false);
+      setError('Некоторые блюда из вашей корзины больше не доступны. Они были удалены из заказа.');
+      return;
+    }
 
     try {
       const orderData = {
@@ -150,6 +196,25 @@ function Checkout() {
 
             <div className="bg-zinc-950 rounded-2xl p-6 sm:p-8 border border-amber-900/20">
               <h2 className="text-2xl sm:text-3xl font-bold text-amber-500 mb-4 sm:mb-6">Контактные данные</h2>
+
+              {error && (
+                <div className="mb-6 p-4 bg-red-900/20 border border-red-500/50 rounded-xl">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-red-400 text-sm mb-2">{error}</p>
+                      {unavailableItems.length > 0 && (
+                        <ul className="text-red-300 text-xs space-y-1">
+                          {unavailableItems.map((item, index) => (
+                            <li key={index}>• {item}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div>
                   <label className="block text-amber-400 mb-2 font-medium text-sm sm:text-base">
