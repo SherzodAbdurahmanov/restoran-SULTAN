@@ -15,14 +15,14 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (!savedCart) return [];
-
     try {
+      const savedCart = localStorage.getItem('cart');
+      if (!savedCart) return [];
+
       const parsedCart = JSON.parse(savedCart);
 
       const hasInvalidIds = parsedCart.some((item: CartItem) =>
-        !item.id.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)
+        !item.id || !item.id.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)
       );
 
       if (hasInvalidIds) {
@@ -32,8 +32,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
 
       return parsedCart;
-    } catch {
-      localStorage.removeItem('cart');
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+      try {
+        localStorage.removeItem('cart');
+      } catch (e) {
+        console.error('Error clearing cart:', e);
+      }
       return [];
     }
   });
